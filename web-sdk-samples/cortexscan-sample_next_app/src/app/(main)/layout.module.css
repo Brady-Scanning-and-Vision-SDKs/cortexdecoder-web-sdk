@@ -1,0 +1,117 @@
+.container {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    flex-direction: row;
+}
+  
+.leftcontent {
+    max-width: 50vw;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem;
+    align-items: center;
+    margin-left: 10%;
+}
+
+.rightContent {
+    width: 50%; /* Occupies the other 50% */
+    padding: 2rem;
+    padding-left: 0;
+    overflow-y: auto;
+}
+
+.logoLink{
+    flex: 1;
+    display: flex; /* Ensures the image is centered */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logoContainer{
+    position: relative;
+    width: 150px; /* Define explicit width */
+    height: 150px; /* Define explicit height */
+}
+
+.wrapper {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.nav {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 2rem;
+    text-align: left;
+}
+
+.navLink {
+    display: block;
+    margin-bottom: 1rem;
+    color: #AE2025;
+    text-decoration: none;
+}
+
+.navLink:hover {
+    color: #91191B;
+    background-color: lightcyan;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; 
+        height: auto; 
+    }
+
+    .leftcontent {
+        width: 100%; 
+        max-width: 100vw;
+        flex-direction: column;
+        justify-content: center;
+        overflow-y: auto; 
+        scrollbar-width: thin; 
+        padding: 5rem;
+        gap: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0;
+        margin : 0;
+    }
+
+    .rightContent {
+        width: 100%; 
+        padding: 1rem; 
+    }
+
+    .logoContainer {
+        width: 120px; /* Slightly smaller logo for mobile */
+        height: 120px;
+    }
+
+    .wrapper {
+        width: 100%; /* Full width for wrapper */
+        align-items: center; /* Align content to the left */
+        flex: 1;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav {
+        flex-direction: row; /* Stack navigation links vertically */
+        gap: 1rem; /* Add spacing between links */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navLink {
+        text-align: center; /* Align text to the left */
+    }
+}

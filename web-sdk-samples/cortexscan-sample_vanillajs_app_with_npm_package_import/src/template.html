@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <script defer="defer" src="bundle.js"></script> -->
+</head>
+
+<body>
+    <div id="page-container">
+        <header id="header">
+            <div style = " text-align: center;" class="header-container">
+                <img id="CodeImage" alt="CodeImage">
+                <h1 style="color: #000000; display: inline;">Camera Scan Web</h1>
+            </div>
+        </header>
+
+        <div id="videoContainer">
+            <div id="cameraSelector"><label for="cameradevices">Choose the camera device</label>
+            <select name="cameradevices" id="cameradevices"></select></div>
+            <div id="videoCanvasContainer" style="height: 500px;">
+                <video playsInline width="640" height="360" id="video"></video>
+                <canvas id="videoCanvas" width="640" height="360" style="z-index: 0; position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;"></canvas>
+            </div>            
+        </div>
+
+        <div>
+            <button class="button" id="toggleCamera"  style="background-color: red;" value=1>Stop Camera</button>
+            <button class="button" id="toggleCameraPreview" style="background-color: red;" value=1>Stop Camera Preview</button>
+            <button class="button" id="toggleDecoding" style="background-color: red;" value=1>Stop Decode</button>
+        </div>
+
+        <div id="div3" style="display: inline-table; margin-top: 30px;">
+            <table id = "resultTable">
+                <thead>
+                    <tr>
+                        <th>
+                            RESULT STRING
+                        </th>
+                        <th>
+                            SYMBOLOGY
+                        </th>
+                        <th>
+                            TIME TAKEN
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    
+                </tbody>
+            </table>
+        </div>
+        <div style="display: inline-block;"><button id = "clearTable">Clear Table</button></div>
+    </div>
+</body>
+
+</html>

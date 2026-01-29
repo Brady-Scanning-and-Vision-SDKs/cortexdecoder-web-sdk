@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Code Corporation </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script src="./CortexDecoderWeb.js"></script>
+        <script src="./index.js"></script>  
+    </head>
+    <body onLoad="init()">
+        <div id="page-container">
+            <header id="header">
+                <div style = " text-align: center;" class="header-container">
+                    <img style = "justify-self: left;" src="res/CODE-Expect-More-2.png">
+                    <h1 style="color: #000000; display: inline;">Cortex Scan Web</h1>
+                </div>
+            </header>
+
+            <div id="mySidenav" class="sidenav" style="z-index: 200;">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="About.html">About</a>
+
+                <div>
+                    <button onclick = 'toggleDropdown(event,"resolutionsList")' class="dropdown-btn">Select the supported resolutions 
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container" id="resolutionsList">
+                    </div>
+                </div>
+                
+                <div>
+                    <button onclick = 'toggleDropdown(event,"duplicateFilteringList")' class="dropdown-btn">Choose the duplicate result filter duration 
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container" id="duplicateFilteringList">
+                    </div>
+                </div>
+            </div>
+              
+            <span class="sticky-sidebar" style="font-size:20px; font-weight: 900;cursor:pointer;float: left;background-color: darkgrey; width: 100%; text-align: left; z-index: 100;" onclick="openNav()">&#9776; Settings</span>
+
+            <div id="videoContainer">
+                <div id="cameraSelector"><label for="cameradevices">Choose the camera device</label>
+                <select name="cameradevices" id="cameradevices" onchange="setCameraDevice()"></select></div>
+               <!--  <div id="videoCanvasContainer" style="height: 500px;">
+                    <canvas id="videoCanvas" width="640" height="480" style="z-index: 0; position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;"></canvas>
+                </div> -->
+                
+                <video id="video" width="640" height="360" playsinline></video>
+            </div>
+
+            <div>
+                <button class="button" id="toggleCamera" onclick="toggleCamera()" style="background-color: red;" value=1>Stop Camera</button>
+                <button class="button" id="toggleCameraPreview" onclick="toggleCameraPreview()" style="background-color: red;" value=1>Stop Camera Preview</button>
+                <button class="button" id="toggleDecoding" onclick="toggleDecoding()" style="background-color: red;" value=1>Stop Decode</button>
+            </div>
+
+
+            <div id="div3" style="display: inline-table; margin-top: 30px;">
+                <table id = "resultTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                RESULT STRING
+                            </th>
+                            <th>
+                                SYMBOLOGY
+                            </th>
+                            <th>
+                                TIME TAKEN
+                            </th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody id="tableBody">
+                        <tr>
+                            <td id="resultString"></td>
+                            <td id="symbologyName"></td>
+                            <td id="decodeTime"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="display: inline-block;"><button id = "clearTable" onclick="clearTable()">Clear Table</button></div>
+        </div>
+    </body>
+</html>

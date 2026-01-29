@@ -1,0 +1,89 @@
+#page-container {
+    position: relative;
+    min-height: 100vh;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+header {
+    background-color:#e1e1e1;
+    padding: 30px;
+}
+
+table{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%; /* Make the table width 100% */
+    margin-bottom: 20px; /* Adjusted margin for consistency */
+}
+
+#resultTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #414042;
+    color: white;
+}
+
+#resultTable td, #resultTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#videoContainer{
+    padding-top: 20px;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Media query for mobile devices */
+@media (max-width: 768px) {
+    #videoCanvasContainer {
+        width: 180px; /* Set the width for mobile devices */
+        height: 320px; /* Set the height for mobile devices */
+        margin: 0 auto; /* Center the container */
+    }
+    video, canvas {
+        width: 180px; /* Set the width for video and canvas */
+        height: 320px; /* Set the height for video and canvas */
+    }
+    #cameraSelector, #div3 {
+        width: 100%;
+    }
+    // table, th, td {
+    //     width: 100%;
+    //     display: block;
+    //     text-align: center; /* Center align text */
+    // }
+    // th, td {
+    //     box-sizing: border-box;
+    //     padding: 10px;
+    //     text-align: center; /* Center align text */
+    // }
+    // #resultTable tbody tr {
+    //     display: flex;
+    //     flex-direction: row;
+    //     align-items: center; /* Center align rows */
+    //     width: 100%;
+    // }
+    // #resultTable tbody td {
+    //     width: 100%;
+    //     display: block;
+    //     text-align: center; /* Center align text */
+    // }
+}

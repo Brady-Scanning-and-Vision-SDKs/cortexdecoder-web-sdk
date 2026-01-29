@@ -1,0 +1,27 @@
+.headings{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.heading1 {
+    font-weight: 500;
+    font-size: 2.6rem;
+    position: relative;
+    top: -10px;
+}
+
+.heading3 {
+    font-size: 1.2rem;
+}
+
+.heading1, .heading2, .heading3{
+    text-align: center;
+}
+
+@media (min-width: 1024px) {
+    .heading1, .heading2, .heading3 {
+        text-align: left;
+    }
+}

@@ -1,0 +1,9 @@
+PROPRIETARY RIGHTS NOTICE
+
+This software, including all its source code, object code, associated files, and documentation ("Software"), is owned by The Code Corporation and is protected internationally under copyright and other intellectual property laws. 
+
+You are strictly prohibited from copying, selling, licensing, distributing, publishing, transferring, modifying, adapting, translating, merging, preparing derivative works from, decompiling, reverse engineering, disassembling, or otherwise using the Software, unless explicitly permitted by The Code Corporation in writing. 
+
+In no event will The Code Corporation be liable for any damages resulting from the use of or inability to use the Software.
+
+© 2023 The Code Corporation. All Rights Reserved.

@@ -1,0 +1,11 @@
+export declare enum license_status {
+    ACTIVATED = "ACTIVATED",
+    VALID = "VALID",
+    EXPIRED = "EXPIRED",
+    INVALID = "INVALID",
+    NOT_FOUND = "NOT_FOUND",
+    MISMATCH = "MISMATCH",
+    COUNT_EXCEEDED = "COUNT_EXCEEDED",
+    NO_NETWORK = "NO_NETWORK",
+    SERVER = "SERVER"
+}

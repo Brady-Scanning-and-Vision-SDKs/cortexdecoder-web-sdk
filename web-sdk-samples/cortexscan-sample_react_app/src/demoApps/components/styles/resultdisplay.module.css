@@ -1,0 +1,54 @@
+.datadisplay {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 50%;
+    max-width: 50%;
+    margin: 0 auto;
+  }
+  
+  .datarow {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .datarow:last-child {
+    border-bottom: none;
+  }
+  
+  .datakey {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .datavalue {
+    color: #666;
+  }
+
+  @media (max-width: 768px) {
+  .datadisplay {
+    padding: 0.5rem;            /* Less padding */
+    gap: 0.5rem;                /* Reduce spacing between rows */
+    width: 100vw;
+  }
+
+  .datarow {
+    padding: 0.25rem;           /* Smaller padding for rows */
+    flex-direction: row;     /* Stack key and value vertically */
+    text-align: left;           /* Align text to the left */
+  }
+
+  .datakey {
+    font-size: 0.9rem;          /* Smaller font for key */
+  }
+
+  .datavalue {
+    font-size: 0.9rem;          /* Smaller font for value */
+  }
+}
