@@ -13,6 +13,7 @@ export default defineConfig({
     vueJsx(),
     vueDevTools(),
   ],
+  base: '/cortexdecoder-web-sdk/cortexscan-sample_vue_app/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
