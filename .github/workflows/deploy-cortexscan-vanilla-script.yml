@@ -1,0 +1,35 @@
+name: Deploy Vanilla JS (Script Tag) Sample
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      # Trigger when files change in this project
+      - 'web-sdk-samples/cortexscan-sample_vanillajs_app_with_script_tag_import/**'
+      - '.github/workflows/deploy-cortexscan-vanilla-script.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # We do NOT run 'npm start' or 'node server.js'. 
+      # GitHub Pages replaces the need for that server.
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          # CRITICAL: We deploy the 'public' folder inside your project
+          # This folder contains index.html, JS files, and WASM files
+          folder: web-sdk-samples/cortexscan-sample_vanillajs_app_with_script_tag_import/public
+          
+          # This is the sub-folder on the live site
+          target-folder: cortexscan-sample_vanillajs_app_with_script_tag_import
+          
+          clean: false
