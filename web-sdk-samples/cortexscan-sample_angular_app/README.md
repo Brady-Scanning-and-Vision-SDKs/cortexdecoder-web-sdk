@@ -1,3 +1,5 @@
+[**Try Me →**](https://brady-scanning-and-vision-sdks.github.io/cortexdecoder-web-sdk/cortexscan-sample_angular_app/)
+
 # CortexscanSampleAngularApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
