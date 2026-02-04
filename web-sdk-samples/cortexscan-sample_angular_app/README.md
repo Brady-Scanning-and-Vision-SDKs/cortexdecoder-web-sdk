@@ -1,4 +1,4 @@
-[![Try Me](https://img.shields.io)]([YOUR_URL_HERE](https://brady-scanning-and-vision-sdks.github.io/cortexdecoder-web-sdk/cortexscan-sample_angular_app/))
+[**Try Me →**](https://brady-scanning-and-vision-sdks.github.io/cortexdecoder-web-sdk/cortexscan-sample_angular_app/)
 
 # CortexscanSampleAngularApp
 
