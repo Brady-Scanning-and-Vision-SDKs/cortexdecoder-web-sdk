@@ -3,7 +3,7 @@ export default function FacebookIcon() {
     return(
         <div>
             <img 
-                src="/assets/icons/facebook.svg" 
+                src={process.env.PUBLIC_URL + "/assets/icons/facebook.svg"} 
                 alt="FaceBook Icon" 
                 width={20} 
                 height={20} 

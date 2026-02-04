@@ -12,7 +12,7 @@ const MainLayout =({ children }) => {
         <Link to="/" className={styles.logoLink}>
           <div className={styles.logoContainer}>
             <img 
-              src="/assets/CodeBrady-logo.png" 
+              src={process.env.PUBLIC_URL + "/assets/CodeBrady-logo.png"} 
               alt="Code Logo" 
               className={styles.logo} 
               style={{ objectFit: "contain", width: "100%", height: "auto" }}
