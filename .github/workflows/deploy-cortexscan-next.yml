@@ -48,6 +48,9 @@ jobs:
         working-directory: ./web-sdk-samples/cortexscan-sample_next_app
         run: npm run build
 
+      - name: Fix GitHub Pages (Disable Jekyll)
+        run: touch web-sdk-samples/cortexscan-sample_next_app/out/.nojekyll
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
