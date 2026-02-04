@@ -1,3 +1,6 @@
+[**Try Me →**](https://brady-scanning-and-vision-sdks.github.io/cortexdecoder-web-sdk/cortexscan-sample_vue_app/)
+
+
 # cortexscan-sample_vue_app
 
 This template should help get you started developing with Vue 3 in Vite.
