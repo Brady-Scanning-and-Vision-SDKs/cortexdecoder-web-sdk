@@ -1,10 +1,11 @@
 import Image from 'next/image';
 
 export default function FacebookIcon() {
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
     return(
         <div>
             <Image 
-                src="/assets/icons/facebook.svg" 
+                src={`${basePath}/assets/icons/facebook.svg`} 
                 alt="FaceBook Icon" 
                 width={20} 
                 height={20} 

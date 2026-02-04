@@ -46,6 +46,9 @@ jobs:
 
       - name: Build Next.js App
         working-directory: ./web-sdk-samples/cortexscan-sample_next_app
+        env:
+          # This must match the basePath in your config injection
+          NEXT_PUBLIC_BASE_PATH: /cortexdecoder-web-sdk/cortexscan-sample_next_app
         run: npm run build
 
       # --- FIX PART 1: PREPARE ROOT FIX ---
