@@ -1,3 +1,6 @@
+[**Try Me →**](https://brady-scanning-and-vision-sdks.github.io/cortexdecoder-web-sdk/cortexscan-sample_next_app/)
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
