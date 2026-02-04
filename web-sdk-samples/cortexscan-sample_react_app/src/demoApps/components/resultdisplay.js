@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./styles/resultdisplay.module.css"
-import { CDResult } from "codecorp-web_sdk";
 
 const ResultDisplay = ({ result }) => {
     return(
