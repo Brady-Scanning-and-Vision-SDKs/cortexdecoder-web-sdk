@@ -243,6 +243,3 @@ CDDevice.audio = true
 CDDevice.vibration = false
 console.log(CDDevice.audio)   //Prints true
 ```
-
-
-//Phina's Changes
