@@ -105,3 +105,13 @@ lerna-debug.log*
 # ------------------------------
 Repository-README
 SampleApp-README.md
+
+# ------------------------------
+# Temporary
+# ------------------------------
+web-sdk-samples/cortexscan-sample_angular_app
+web-sdk-samples/cortexscan-sample_next_app
+web-sdk-samples/cortexscan-sample_react_app
+web-sdk-samples/cortexscan-sample_vanillajs_app_with_npm_package_import
+web-sdk-samples/cortexscan-sample_vanillajs_app_with_script_tag_import
+web-sdk-samples/cortexscan-sample_vue_app
