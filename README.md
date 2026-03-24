@@ -1,245 +1,284 @@
-## Important
-- The SDK has a Web Assembly file(.wasm) that needs to be imported in the application.
-import "../node_modules/@your-q-number/codecorp-web_sdk/dist/web/0xxxfefjensssrejriwjdkq9.wasm"  
-However, the application bundler should allow the WASM file to be uploaded to the browser. The WebPack configuration needed to allow this is mentioned below -
-//wasm files should not be processed but just be emitted.
+# CortexDecoder Web SDK - Samples & Reference
 
+[![Platform](https://img.shields.io/badge/Platform-Web%20Browser-blue.svg)]()
+[![SDK Version](https://img.shields.io/badge/SDK-v2.x.x-success.svg)]()
+[![API Docs](https://img.shields.io/badge/API_Docs-NexGen-blueviolet.svg)](https://nexgen-docs.netlify.app/)
+[![Support](https://img.shields.io/badge/Support-Brady_Enterprise-orange.svg)](mailto:software.support@codecorp.com)
+
+**Enterprise-grade barcode scanning, data capture, and parsing for Web browsers**
+
+This repository contains ready-to-compile sample applications demonstrating how to integrate the CortexDecoder SDK into retail, industrial, or verification workflows using JavaScript/TypeScript.
+
+> **Note:** This repository contains sample code only. Download the SDK binary and license keys from the [Brady Developer Portal](https://devportal.codecorp.com/).
+
+<div align="center">
+  <img src="demo.gif" alt="Preview of the CortexDecoder Web SDK sample" width="600"/>
+</div>
+
+
+
+## Enterprise Barcode Scanning Features
+
+* **Enterprise Barcode Scanning:** Sub-millisecond decoding latency for 40+ symbologies (1D, 2D, and postal codes).
+* **Live Camera & Static Image Decoding:** Process continuous video streams or decode discrete bitmaps, gallery assets, and file uploads.
+* **Industrial DPM & Multi-Code Tracking:** Reliably read low-contrast Direct Part Marking (laser, dot peen, chemical) and decode multiple barcodes simultaneously.
+* **Driver's License, GS1 & UDI Data Parsing:** Instantly extract and format data from driver's licenses and healthcare/logistics formats.
+* **Secure Offline Processing & ROI:** Utilize 100% on-device decoding for complete data privacy, and restrict scanning to an Active Region of Interest (ROI) for maximum precision.
+
+## System Requirements
+
+- **Supported Languages**: JavaScript, TypeScript
+- **Browser Compatibility**: Modern browsers with WebAssembly support
+- **Build Tools**: Node.js 14+, NPM 6+
+- **Minimum SDK Version**: 2.0.0
+
+
+
+## Quick Start Guide
+
+These core APIs are required for any CortexDecoder integration. If you simply want to compile the sample code in this repository, skip to [Running the Sample Apps](#running-the-sample-apps).
+
+### 1. Getting the License
+
+Before initializing the SDK, generate your active development or production license key via the [Brady Developer Portal](https://devportal.codecorp.com/).
+
+### 2. Apply the License
+
+```javascript
+import { CDLicense } from '@your-q-number/codecorp-web_sdk';
+
+CDLicense.activateLicense("YOUR_LICENSE_KEY_HERE");
 ```
-{
-    test : /\.(wasm)$/,
-    type: `javascript/auto`,
-    use: {
-        loader: `file-loader`
-    }
-}
+
+### 3. Configure Permissions
+
+The SDK requires camera access for live scanning. Your application must request user permission:
+
+```html
+<video id="video" width="640" height="360" playsinline></video>
+<canvas id="videoCanvas" width="640" height="360"></canvas>
 ```
 
-## Installation Instructions
+### 4. Initialize the Camera
 
-### Install NodeJS and NPM
+```javascript
+import { CDCamera } from '@your-q-number/codecorp-web_sdk';
 
-[https://docs.npmjs.com/downloading-and-installing-node-js-and-npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-
-### Verify Installation of NodeJS and NPM
-
-Open a command prompt (or PowerShell), and enter the following:
-
-* ```node –v```
-  The system should display the Node.js version installed on your system.
-* ```npm –v```
-  The system should display the NPM version installed on your system.
-
-### SDK folder structure
-
-* The SDK release folder will have two directories namely <b>NPM_Package</b> and  <b>SampleProjects</b>.
-* The "NPM_Package" folder contains the package that should be installed locally in the project.
-* The "SampleProjects" folder contains example apps to demonstrate the camera scanning and image scanning feature of the SDK.
-
-### Camera Scan Sample App
-
-#### 1. Integrate the SDK in camera scan sample app
-* Copy the <b>camera-scan-sampleapp</b> app from the "SampleProjects" folder to local file system.
-* Copy the <b>codecorp-web_sdk-x.x.x.tgz</b> file from "NPM_Package" folder to the root of "camera-scan-sampleapp" app.
-* Open the <b>camera-scan-sampleapp</b> app in a source code editor of your choice.
-* Type <b>npm install --save "./codecorp-web_sdk-x.x.x.tgz"</b> from the project's root folder.
-
-#### 2. Find and add your Q-number to import statements
-* Navigate to "src" folder.
-* Open package.json, find "codecorp-web_sdk" under dependencies, and copy its 5-character Q-number (e.g. q0000).
-* Open "index.js" and enter your Q-number in this import statement:
-	- Change: import * as CortexDecoder from '@your-q-number/codecorp-web_sdk';
-	- Example: import * as CortexDecoder from '@q0000/codecorp-web_sdk';
-
-#### 3. Find and add your WASM to the import statment
-* Navigate to the node_modules folder and open the folder named after your q-number. 
-	- Example: '@q0000'
-* Continue through the subfolders -> codecorp-web_sdk -> dist -> web
-* Copy the relative file path of the file ending in ".wasm"
-* Return to "index.js" and paste the file path in the import statement:
-  - Change: <b>import "../node_modules/@your-q-number/codecorp-web_sdk/dist/web/your-wasm-file-name.wasm";</b>
-  - Example: <b>import "../node_modules/@q0000/codecorp-web_sdk/dist/web/6d64b25b330217463b53c89e718982b9.wasm";</b>
-
-#### 4. Activate the license
-* In "index.js", go to the line where function <b>"activateLicense"</b> is called and replace the text with the license key provided by our Sales team.
-* Type <b>npm run dev</b> to start the server. The license activation message must be printed in console log.
-
-#### 5. Use Camera to Scan
-
-* Our SDK provides APIs to change multiple settings of the device camera and decode the frames generated from the camera.
-* SDK requires the application to provide either -
-  * HTML canvas element
-    ```<canvas id="videoCanvas" width="640" height="360"></canvas>```
-  * HTML video element
-    ```<video id="video" width="640" height="360" playsinline></video>```
-* CDCamera class provides ```init(ref?: HTMLVideoElement | HTMLCanvasElement): Promise<void>;``` API which takes an optional parameter for video input. If no parameter is provided, SDK looks for video element in the DOM and if none, throws an error.
-
-  ```js
-  CDCamera.init(document.getElementById("videoCanvas"))
-  ```
-* The ```getConnectedCameras(): MediaDeviceInfo[];``` API of CDCamera class returns a list of all the connected video input devices.
-* Pass the device returned from getConnectedCameras() to ```setCamera(device:MediaDeviceInfo):Promise<void>;``` API.
-* If you prefer to select the camera based on orientation (front / back) then call ```    setCameraPosition(value: CDPosition): Promise<void>;``` API.
-
-  ```js
-  CDCamera.setCameraPosition(value : CDPosition, autoSwitch : boolean)
-  ```
-* Call ```startCamera(): Promise<void>;``` API to start the camera stream.
-* Finally call ```startPreview(getResult: (arg0: [CDResult]) => any): Promise<void>;``` which takes a callback function as argument to return the decode results.
-
-  ```js
-  CDCamera.startPreview((result)=>{
-	console.log(result)
-  })
-  ```
-__________________________________________________________
-### Image Scan Sample App
-
-#### 1. Integrate the SDK in image scan sample app
-* Copy the <b>image-scan-sampleapp</b> app from the "SampleProjects" folder to local file system.
-* Copy the <b>codecorp-web_sdk-2.x.x.tgz</b> file from "NPM_Package" folder to the root of "image-scan-sampleapp" app.'
-* Open the <b>image-scan-sampleapp</b> app in a source code editor of your choice.
-* Type <b>npm install --save "./codecorp-web_sdk-2.x.x.tgz"</b> from the project's root folder.
-
-#### 2. Find and add your Q-number to import statement
-* Navigate to "src" folder 
-* Open "package.json", find "codecorp-web_sdk" under dependencies, and copy its 5-character Q-number (e.g. q0000).
-* Open "index.js" and enter your q-number in this import statement:
-  - Change: <b>import { CDDataParsing, CDDecoder, CDLicense, CDPerformanceFeatures, CDSymbology } from '@your-q-number/codecorp-web_sdk';</b>
-  - Example: <b>import { CDDataParsing, CDDecoder, CDLicense, CDPerformanceFeatures, CDSymbology } from '@q0000/codecorp-web_sdk';</b>
-
-#### 3. Find and add your WASM to the import statement
-* Navigate to the node_modules folder and open the folder named after your q-number. 
-	- Example: '@q0000'
-* Continue through the subfolders -> codecorp-web_sdk -> dist -> web
-* Copy the relative file path of the file ending in ".wasm"
-* Return to "index.js" and paste the file path in the import statement:
-  - Change: <b>import "../node_modules/@your-q-number/codecorp-web_sdk/dist/web/your-wasm-file-name.wasm";</b>
-  - Example: <b>import "../node_modules/@q0000/codecorp-web_sdk/dist/web/6d64b25b330217463b53c89e718982b9.wasm";</b>
-
-#### 4. Activate the license
-* Go to the line where function <b>"activateLicense"</b> is called and replace the text with the license key provided by our Sales team.
-* Type <b>npm run dev</b> to start the server. The license activation message must be printed in console log.
-
-#### 5. Scan Images
-
-* In HTML file, using input tag, upload an image
-
-  ```html
-  <input type="file" id="imageImport" accept="image/*,.pdf" />
-  ```
-* In JS, handle the image upload
-
-  ```js
-  // HTML
-  document.getElementById("imageImport").addEventListener('change', getImage, false);
-
-  //JS
-  async function getImage(evt) {
-	image = evt.target.files[0];
-	result = await CDDecoder.decode(image).catch(e => alert(e));
-	console.log(result)
-  }
-  ```
-
-__________________________________________________________
-
-### Image Scan Node Sample App
-
-#### 1. Integrate the SDK in image scan nodesdk sample app
-
-* Copy the <b>image-scan-nodesdk-sampleapp</b> app from the "SampleProjects" folder to local file system.
-* Copy the codecorp-web_sdk-2.x.x.tgz</b> file from "NPM_Package" folder to the root of <b>image-scan-nodesdk-sampleapp</b> app.
-* Open the <b>image-scan-nodesdk-sampleapp</b> app in a source code editor of your choice.
-* Type <b>npm install --save "./codecorp-web_sdk-2.x.x.tgz"</b> from the project's root folder.
-
-#### 2. Find and add your Q-number to import statement
-* Open package.json, find "codecorp-web_sdk" under dependencies, and copy its 5-character Q-number (e.g. q0000).
-* Open the file "index.js" and enter your Q-number in this import statement:
-  - Change: <b>const CortexDecoder = require('@your-q-number/codecorp-web_sdk')</b>
-  - Example: <b>const CortexDecoder = require('@q0000/codecorp-web_sdk')</b>
-
-#### 3. Copy your .wasm file to the sample app root folder
-* Navigate to the node_modules folder and open the folder named after your q-number. 
-	- Example: '@q0000'
-* Continue through the subfolders -> codecorp-web_sdk -> dist -> node
-* Copy the file ending in ".wasm"
-* Paste the ".wasm" file to the root folder of <b>image-scan-nodesdk-sampleapp</b>
-
-#### 4. Activate the license
-* Navigate to "index.js".
-* Go to the line where function <b>"activateLicense"</b> is called and replace the text with the license key provided by our Sales team.
-* Type <b>npm start</b> to start the server. The license activation message must be printed in console log.
-
-#### 5. Open Postman
-
-##### Initialize Decoder and Activate License
-
-  ```js
-    	HTTP Request: GET http://localhost:8000/init
-
-  	Body: None
-
-  	Expected HTTP Code: 200 OK
-
-  	Expected Response: {
-  		"status": "ACTIVATED",
-  		"message": "License activated",
-  		"expirationDate": "10/31/2025", //Your license   expiration date
-  		"rawExpirationDate": "2025-11-01T03:59:59.999Z" //  Your license expiration date
-  	}
-  ```
-
-##### Decode sample image
-
-```js
-	HTTP Request: POST http://localhost:8000/post_image
-
-	Body: Use form-data, with
-	Key: “image”
-	Key-type: “File”
-	Value: Upload an image of a barcode like “UPC(UPC-A).jpg.
-
-	Expected HTTP Code: 200 Ok
+await CDCamera.init(document.getElementById("videoCanvas"));
+await CDCamera.startCamera();
 ```
-### Quick Tips
 
-#### Enable or Disable a symbology
+### 5. Start Decoding
 
-```js
-const cdSymbology = new CDSymbology();
-cdSymbology.QR.enable = true
-console.log(cdSymbology.QR.enable) //Prints true
+```javascript
+import { CDDecoder } from '@your-q-number/codecorp-web_sdk';
+
+CDCamera.startPreview((result) => {
+  console.log("Decoded results:", result);
+});
 ```
-#### Set Region of Interest (ROI)
 
-```js
+### 6. Configure Symbologies
+
+By default, all symbologies are disabled. Enable the ones you need:
+
+```javascript
+import { CDSymbology } from '@your-q-number/codecorp-web_sdk';
+
+const symbology = new CDSymbology();
+symbology.QR.enable = true;
+symbology.Code128.enable = true;
+symbology.UPCA.enable = true;
+```
+
+## Advanced Features
+
+### Region of Interest (ROI)
+
+Restrict decoding to a specific screen area to optimize performance and prevent accidental scans.
+
+```javascript
+import { CDRect } from '@your-q-number/codecorp-web_sdk';
+import { CDDecoder } from '@your-q-number/codecorp-web_sdk';
+
 const ROIRect = new CDRect();
-
 ROIRect.TopLeft.X = parseInt(left);
 ROIRect.TopLeft.Y = parseInt(top);
-ROIRect.TopRight.X = parseInt(left) + parseInt(width)
-ROIRect.TopRight.Y = parseInt(top)
-ROIRect.BottomRight.X = parseInt(left) + parseInt(width)
-ROIRect.BottomRight.Y = parseInt(top) + parseInt(height)
-ROIRect.BottomLeft.X = parseInt(left)
-ROIRect.BottomLeft.Y = parseInt(top) + parseInt(height)
+ROIRect.TopRight.X = parseInt(left) + parseInt(width);
+ROIRect.TopRight.Y = parseInt(top);
+ROIRect.BottomRight.X = parseInt(left) + parseInt(width);
+ROIRect.BottomRight.Y = parseInt(top) + parseInt(height);
+ROIRect.BottomLeft.X = parseInt(left);
+ROIRect.BottomLeft.Y = parseInt(top) + parseInt(height);
 
 CDDecoder.setRegionOfInterest(ROIRect, true);
 ```
-#### Set Barcodes to Decode
 
-```js
+### Enable Feedback (Beep & Vibration)
+
+```javascript
+import { CDDevice } from '@your-q-number/codecorp-web_sdk';
+
+CDDevice.audio = true;
+CDDevice.vibration = true;
+```
+
+### Highlight Barcodes
+
+Draw visual overlays from decode results to provide immediate user feedback in real-time previews.
+
+```javascript
+CDCamera.startPreview((result) => {
+  console.log("Decoded results:", result);
+  // Use your app's overlay layer to draw result bounds on top of the camera view.
+});
+```
+
+
+## Running the Sample Apps
+
+To see these APIs in action, follow these steps to build and run the sample applications included in this repository.
+
+1. **Clone the Project**
+
+   Before proceeding, ensure you have:
+   - Node.js 14+ and NPM 6+ installed ([https://docs.npmjs.com/downloading-and-installing-node-js-and-npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm))
+   - An active SDK package from the [Brady Developer Portal](https://devportal.codecorp.com/)
+
+```bash
+git clone <repository-url>
+cd cortexdecoder-web-sdk
+```
+
+2. **Add the SDK Binary**
+
+- Download the `codecorp-web_sdk-x.x.x.tgz` package from the Brady Developer Portal
+- Copy it to your sample app's root directory
+- Run: `npm install --save "./codecorp-web_sdk-x.x.x.tgz"`
+
+   The SDK includes a WebAssembly file (.wasm) that must be properly imported and configured. Your application bundler must allow the WASM file to be emitted to the browser.
+
+   For **Webpack**, add this configuration:
+
+```javascript
+{
+  test : /\.(wasm)$/,
+  type: `javascript/auto`,
+  use: {
+    loader: `file-loader`
+  }
+}
+```
+
+   In your application entry file, import the WASM module:
+
+```javascript
+import "../node_modules/@your-q-number/codecorp-web_sdk/dist/web/your-wasm-file-name.wasm";
+```
+
+3. **Configure Licensing**
+
+After installation, find your Q-number and update import statements:
+
+```javascript
+// Find your Q-number in package.json under dependencies
+// Change: import * as CortexDecoder from '@your-q-number/codecorp-web_sdk';
+// Example: import * as CortexDecoder from '@q0000/codecorp-web_sdk';
+```
+
+Open the sample app's main index file and replace the placeholder with your license key:
+
+```javascript
+CDLicense.activateLicense("YOUR_LICENSE_KEY");
+```
+
+4. **Build and Run**
+
+Navigate to your chosen sample app directory and run:
+
+```bash
+npm run dev
+```
+
+
+
+### Included Samples
+
+| Sample App | Best For | Framework |
+| --- | --- | --- |
+| [Angular Sample](web-sdk-samples/cortexscan-sample_angular_app/) | Real-time camera scanning with Angular framework | Angular |
+| [React Sample](web-sdk-samples/cortexscan-sample_react_app/) | Real-time camera scanning with React framework | React |
+| [Vue Sample](web-sdk-samples/cortexscan-sample_vue_app/) | Real-time camera scanning with Vue framework | Vue |
+| [Next.js Sample](web-sdk-samples/cortexscan-sample_next_app/) | Real-time camera scanning with server-side rendering | Next.js |
+| [Vanilla JS (NPM)](web-sdk-samples/cortexscan-sample_vanillajs_app_with_npm_package_import/) | Plain JavaScript with NPM package import | Vanilla JS |
+| [Vanilla JS (Script Tag)](web-sdk-samples/cortexscan-sample_vanillajs_app_with_script_tag_import/) | Plain JavaScript without build tools | Vanilla JS |
+
+
+## Common Issues & Troubleshooting
+
+- **WASM file does not load**: Ensure your bundler emits `.wasm` assets and that the import path points to the installed SDK package.
+- **No camera feed appears**: Verify browser camera permission was granted and test in a secure context (HTTPS or localhost).
+- **No decode results**: Confirm your license is active and required symbologies are explicitly enabled.
+
+
+
+## Common Usage Patterns
+
+### Camera Scanning
+
+Capture and decode barcodes from a live camera feed:
+
+1. Initialize the camera with a canvas or video element
+2. Call `startCamera()` to activate the device camera
+3. Use `startPreview()` with a callback to receive decoded results
+
+```javascript
+await CDCamera.init(document.getElementById("videoCanvas"));
+await CDCamera.startCamera();
+
+CDCamera.startPreview((result) => {
+  console.log("Scan results:", result);
+});
+```
+
+### Image File Scanning
+
+Decode barcodes from uploaded images:
+
+```html
+<input type="file" id="imageUpload" accept="image/*,.pdf" />
+```
+
+```javascript
+document.getElementById("imageUpload").addEventListener('change', async (event) => {
+  const file = event.target.files[0];
+  const result = await CDDecoder.decode(file).catch(e => alert(e));
+  console.log(result);
+});
+```
+
+### Set Symbology Decode Options
+
+```javascript
 await CDDecoder.setBarcodesToDecode(1, true);
+CDDecoder.timeLimit = 5000; // Set 5 second timeout
 ```
-#### Set TimeLimit
 
-```js
-CDDecoder.timeLimit = value
-```
-#### Enable beep and vibrate for a successful scan
 
-```js
-CDDevice.audio = true
-CDDevice.vibration = false
-console.log(CDDevice.audio)   //Prints true
-```
+
+## Support & Resources
+
+- **Sample App Issues**: Report bugs related to the sample code via [GitHub Issues](https://github.com/skanda-srikanta/cortexdecoder-web-sdk/issues).
+
+- **SDK Product Support**: For inquiries regarding decoding performance, engine behavior, or licensing, contact *software.support@codecorp.com*.
+
+- **API Documentation** - [NexGen Docs](https://nexgen-docs.netlify.app/)
+- **Licensing & Binaries** - [Brady Developer Portal](https://devportal.codecorp.com/)
+- **Main Website** - [CodeCorp by Brady](https://www.codecorp.com)
+
+
+
+---
+
+© 2026 Brady Worldwide, Inc. All rights reserved
+
