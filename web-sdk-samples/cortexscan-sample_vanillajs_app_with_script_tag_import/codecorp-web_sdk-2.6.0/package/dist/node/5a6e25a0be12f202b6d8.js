@@ -1,1 +1,0 @@
-import CortexDecoderLib from"./libCortexDecoder.js";import CortexDecoderModule from"./libCortexDecoder.wasm";function getWasm(e){return CortexDecoderLib({locateFile:o=>o.endsWith(".wasm")?e?e.endsWith("/")?e+CortexDecoderModule.split("/").pop():e+"/"+CortexDecoderModule.split("/").pop():CortexDecoderModule:o})}export default getWasm;
