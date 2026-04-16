@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+    <div id="app">
+        <header class="app-header">
+            <img id="CodeImage" alt="Code Corp logo">
+            <div>
+                <h1>Camera Scan Sample</h1>
+                <p>Minimal CortexDecoder Web SDK integration</p>
+            </div>
+        </header>
+
+        <main class="app-content">
+            <section id="scannerSection">
+                <div id="videoCanvasContainer">
+                    <video playsinline id="video"></video>
+                    <canvas id="videoCanvas"></canvas>
+                </div>
+            </section>
+
+            <section class="panel controls-panel">
+                <div id="cameraSelector" class="field-row">
+                    <label for="cameradevices">Camera</label>
+                    <select name="cameradevices" id="cameradevices"></select>
+                </div>
+
+                <div class="field-row">
+                    <label for="previewWidth">Preview Size (Desktop)</label>
+                    <div class="inline-inputs">
+                        <input id="previewWidth" type="number" min="200" step="10" />
+                        <input id="previewHeight" type="number" min="150" step="10" />
+                        <button id="applyPreviewSize" class="secondary-btn">Apply</button>
+                    </div>
+                </div>
+
+                <div class="button-row">
+                    <button id="toggleScan" class="primary-btn" value="0">Start Scan</button>
+                    <button id="clearResult" class="secondary-btn">Clear Result</button>
+                </div>
+            </section>
+
+            <section class="panel result-panel">
+                <h2>Last Decode Result</h2>
+                <p><span class="label">Data:</span> <span id="resultData">-</span></p>
+                <p><span class="label">Symbology:</span> <span id="resultSymbology">-</span></p>
+                <p><span class="label">Decode Time:</span> <span id="resultTime">-</span></p>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
