@@ -128,9 +128,10 @@ CDDevice.vibration = true;
 Draw visual overlays from decode results to provide immediate user feedback in real-time previews.
 
 ```javascript
+CDCamera.setHighlightBarcodes(true);
+
 CDCamera.startPreview((result) => {
   console.log("Decoded results:", result);
-  // Use your app's overlay layer to draw result bounds on top of the camera view.
 });
 ```
 
@@ -206,13 +207,9 @@ npm run dev
 
 | Sample App | Best For | Framework |
 | --- | --- | --- |
-| [Angular Sample](web-sdk-samples/cortexscan-sample_angular_app/) | Real-time camera scanning with Angular framework | Angular |
-| [React Sample](web-sdk-samples/cortexscan-sample_react_app/) | Real-time camera scanning with React framework | React |
-| [Vue Sample](web-sdk-samples/cortexscan-sample_vue_app/) | Real-time camera scanning with Vue framework | Vue |
-| [Next.js Sample](web-sdk-samples/cortexscan-sample_next_app/) | Real-time camera scanning with server-side rendering | Next.js |
-| [Vanilla JS (NPM)](web-sdk-samples/cortexscan-sample_vanillajs_app_with_npm_package_import/) | Plain JavaScript with NPM package import | Vanilla JS |
-| [Vanilla JS (Script Tag)](web-sdk-samples/cortexscan-sample_vanillajs_app_with_script_tag_import/) | Plain JavaScript without build tools | Vanilla JS |
-
+| [Camera Scan Sample](web-sdk-samples/cortexscan-sample_camera_scan_app) | Real-time camera scanning | JS |
+| [Image Scan Sample](web-sdk-samples/cortexscan-sample_image_scan_app) | Image scanning | JS |
+| [Region of Interest Sample](web-sdk-samples/cortexscan-sample_roi_feature_app) | Real-time camera scanning with Region Of Interest Setting | JS |
 
 ## Common Issues & Troubleshooting
 
