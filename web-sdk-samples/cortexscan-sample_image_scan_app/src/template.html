@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+    <div id="app">
+        <header class="app-header">
+            <img id="CodeImage" alt="Code Corp logo">
+            <div>
+                <h1>Image Scan Sample</h1>
+                <p>Minimal CortexDecoder Web SDK integration</p>
+            </div>
+        </header>
+
+        <main class="app-content">
+            <section class="panel controls-panel">
+                <label for="imageImport" class="field-label">Upload Image</label>
+                <input type="file" id="imageImport" accept="image/*,.pdf" />
+
+                <div class="button-row">
+                    <button id="scanButton" class="primary-btn">Scan</button>
+                    <button id="clearButton" class="secondary-btn">Clear</button>
+                </div>
+
+                <p id="statusText" class="status-text">Upload an image and click Scan.</p>
+            </section>
+
+            <section class="panel preview-panel">
+                <h2>Image Preview</h2>
+                <img id="imagePreview" class="hidden" alt="Selected image preview" />
+            </section>
+
+            <section class="panel result-panel">
+                <h2>Last Decode Result</h2>
+                <p><span class="label">Data:</span> <span id="resultData">-</span></p>
+                <p><span class="label">Symbology:</span> <span id="resultSymbology">-</span></p>
+                <p><span class="label">Decode Time:</span> <span id="resultTime">-</span></p>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

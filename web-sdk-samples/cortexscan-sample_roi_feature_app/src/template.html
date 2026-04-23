@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+    <div id="app">
+        <header class="app-header">
+            <img id="CodeImage" alt="Code Corp logo">
+            <div>
+                <h1>ROI Feature Sample</h1>
+                <p>Adjust Region of Interest in real-time</p>
+            </div>
+        </header>
+
+        <main class="app-content">
+            <section id="scannerSection">
+                <div id="videoCanvasContainer">
+                    <video playsinline id="video"></video>
+                    <canvas id="videoCanvas"></canvas>
+                    <div id="roiBox"></div>
+                </div>
+            </section>
+
+            <section class="panel controls-panel">
+                <div class="field-row">
+                    <label for="roiX">ROI X</label>
+                    <input id="roiX" type="range" min="0" max="95" step="1" value="20" />
+                    <span id="roiXValue">20%</span>
+                </div>
+
+                <div class="field-row">
+                    <label for="roiY">ROI Y</label>
+                    <input id="roiY" type="range" min="0" max="95" step="1" value="20" />
+                    <span id="roiYValue">20%</span>
+                </div>
+
+                <div class="field-row">
+                    <label for="roiWidth">ROI Width</label>
+                    <input id="roiWidth" type="range" min="5" max="100" step="1" value="60" />
+                    <span id="roiWidthValue">60%</span>
+                </div>
+
+                <div class="field-row">
+                    <label for="roiHeight">ROI Height</label>
+                    <input id="roiHeight" type="range" min="5" max="100" step="1" value="40" />
+                    <span id="roiHeightValue">40%</span>
+                </div>
+
+                <div class="button-row">
+                    <button id="toggleScan" class="primary-btn" value="0">Start Scan</button>
+                    <button id="resetRoi" class="secondary-btn">Reset ROI</button>
+                </div>
+
+                <p id="statusText" class="status-text">Initializing SDK...</p>
+            </section>
+
+            <section class="panel result-panel">
+                <h2>Last Decode Result</h2>
+                <p><span class="label">Data:</span> <span id="resultData">-</span></p>
+                <p><span class="label">Symbology:</span> <span id="resultSymbology">-</span></p>
+                <p><span class="label">Decode Time:</span> <span id="resultTime">-</span></p>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

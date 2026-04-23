@@ -1,0 +1,46 @@
+name: Deploy Angular Sample
+
+on:
+  push:
+    branches: ["main"]
+    # TRIGGER: Only run when files in this specific folder change
+    paths:
+      - 'web-sdk-samples/cortexscan-sample_angular_app/**'
+      - '.github/workflows/deploy-cortexscan-angular.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write # Required to push to the gh-pages branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      # --- BUILD ---
+      - name: Install Dependencies
+        working-directory: ./web-sdk-samples/cortexscan-sample_angular_app
+        run: npm ci
+
+      - name: Build Angular App
+        working-directory: ./web-sdk-samples/cortexscan-sample_angular_app
+        # output-path flag forces the build into a simple folder name for easier deployment
+        run: |
+          npx ng build --configuration production --base-href /cortexdecoder-web-sdk/cortexscan-sample_angular_app/ --output-path dist/build-output
+
+      # --- DEPLOY (Update Only This Folder) ---
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: web-sdk-samples/cortexscan-sample_angular_app/dist/build-output # The build output to deploy
+          target-folder: cortexscan-sample_angular_app # The subfolder on the live site
+          clean: false # CRITICAL: Do not delete other apps on the site

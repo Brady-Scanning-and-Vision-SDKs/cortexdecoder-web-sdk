@@ -1,0 +1,257 @@
+:root {
+    --bg: #f6f8fb;
+    --surface: #ffffff;
+    --text: #1d1d1f;
+    --muted: #5f6368;
+    --primary: #1d6ef2;
+    --primary-strong: #1657c0;
+    --border: #d9e0ea;
+    --danger: #b3261e;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+}
+
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.app-header img {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.app-header p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.app-content {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding: 18px;
+    display: grid;
+    gap: 14px;
+}
+
+#videoCanvasContainer {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#video,
+#videoCanvas {
+    display: block;
+    max-width: 100%;
+}
+
+#videoCanvas {
+    position: absolute;
+    inset: 0;
+}
+
+#roiBox {
+    position: absolute;
+    border: 2px solid #00c2ff;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+    border-radius: 6px;
+}
+
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.field-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.field-row label {
+    min-width: 110px;
+    font-weight: 600;
+}
+
+.field-row select,
+.field-row input {
+    height: 38px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0 10px;
+}
+
+.field-row input[type="range"] {
+    flex: 1;
+    padding: 0;
+}
+
+.inline-inputs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.field-row span {
+    min-width: 56px;
+    text-align: right;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.inline-inputs input {
+    width: 110px;
+}
+
+.button-row {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: #fff;
+}
+
+.primary-btn:hover {
+    background: var(--primary-strong);
+}
+
+.primary-btn.is-stop {
+    background: #b3261e;
+}
+
+.secondary-btn {
+    background: #fff;
+    border-color: var(--border);
+    color: var(--text);
+}
+
+.status-text {
+    margin: 8px 0 0;
+    color: var(--muted);
+}
+
+.status-text.error {
+    color: var(--danger);
+}
+
+.result-panel h2 {
+    margin: 0 0 10px;
+    font-size: 1.05rem;
+}
+
+.result-panel p {
+    margin: 6px 0;
+    word-break: break-word;
+}
+
+.result-panel .label {
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    body {
+        background: #000;
+    }
+
+    .app-header {
+        display: none;
+    }
+
+    .app-content {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        display: block;
+    }
+
+    #scannerSection,
+    #videoCanvasContainer,
+    #video,
+    #videoCanvas {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #video {
+        object-fit: cover;
+    }
+
+    .controls-panel,
+    .result-panel {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .controls-panel {
+        bottom: 14px;
+        margin: 0;
+    }
+
+    .result-panel {
+        top: 14px;
+        margin: 0;
+    }
+
+    .field-row {
+        align-items: center;
+        flex-direction: row;
+        margin-bottom: 8px;
+    }
+
+    .field-row label {
+        min-width: 80px;
+    }
+}
