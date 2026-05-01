@@ -1,7 +1,7 @@
 # CortexDecoder Web SDK - Samples & Reference
 
 [![Platform](https://img.shields.io/badge/Platform-Web%20Browser-blue.svg)]()
-[![SDK Version](https://img.shields.io/badge/SDK-v2.x.x-success.svg)]()
+[![SDK Version](https://img.shields.io/badge/SDK-v2.8.0-success.svg)]()
 [![API Docs](https://img.shields.io/badge/API_Docs-NexGen-blueviolet.svg)](https://nexgen-docs.netlify.app/)
 [![Support](https://img.shields.io/badge/Support-Brady_Enterprise-orange.svg)](mailto:software.support@codecorp.com)
 
