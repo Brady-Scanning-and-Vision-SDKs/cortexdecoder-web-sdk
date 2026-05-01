@@ -5,6 +5,19 @@ title: Web SDK
 # Web SDK Release Notes
 
 ---
+## Version 2.8.0
+
+### New Features
+- None
+
+### Improvements & Fixes
+- Fixed Code 11 misreads when checksum is disabled.
+- Added additional checking in Code 128 to avoid misread due to poor printing.
+
+### API Changes
+- None
+
+---
 
 ## Version 2.7.0
 
