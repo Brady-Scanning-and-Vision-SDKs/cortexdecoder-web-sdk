@@ -5,6 +5,21 @@ title: Web SDK
 # Web SDK Release Notes
 
 ---
+## Version 2.9.0
+
+### New Features
+- None
+
+### Improvements & Fixes
+- Improved Web SDK runtime architecture
+- Camera preview and overlay improvements
+- Expanded regression validation
+
+### API Changes
+- None
+
+---
+
 ## Version 2.8.0
 
 ### New Features
