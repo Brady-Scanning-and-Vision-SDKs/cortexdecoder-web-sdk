@@ -5,6 +5,21 @@ title: Web SDK
 # Web SDK Release Notes
 
 ---
+## Version 2.10.0
+
+### New Features
+- None
+
+### Improvements & Fixes
+- Improved barcode highlight retention logic to clear out drawn highlight.
+- Updated tests
+
+### API Changes
+- None
+
+---
+
+---
 ## Version 2.9.0
 
 ### New Features
