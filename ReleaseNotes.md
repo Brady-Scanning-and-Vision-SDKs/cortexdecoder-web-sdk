@@ -3,6 +3,19 @@ title: Web SDK
 ---
 
 # Web SDK Release Notes
+---
+## Version 2.11.0
+
+### New Features
+- None
+
+### Improvements & Fixes
+- Fix ReDoS vulnerability issue.
+
+### API Changes
+- None
+
+---
 
 ---
 ## Version 2.10.0
